@@ -27,5 +27,17 @@ describe('BipbopWebsocket', function () {
       cb();
     });
   });
-  
+
+  it('onClose', function (cb) {
+    var webSocket = new BipbopWebSocket('6057b71263c21e4ada266c9d4d4da613', function () {
+
+    }, function () {
+
+    }).send('hello!', function () {
+      cb();
+      webSocket.close();
+    });
+  });
+
+
 });
