@@ -8,21 +8,24 @@ const pkg = require('./package.json');
 
 /* eslint import/no-extraneous-dependencies: 0 */
 
-function bundler(format, file) {
-  return bundle => bundle.write({
+function bundler(format, file, opts = {}) {
+  return bundle => bundle.write(Object.assign({
     format,
     exports: 'default',
     name: 'BipbopWebSocket',
-    extend: true,
+    globals: {
+      ws: 'WebSocket',
+    },
     file,
-  });
+  }, opts));
 }
 
 gulp.task('pack:test', () => rollup(rollupGenerator({ istanbul: true }))
   .then(bundler('umd', path.join(__dirname, 'tests', 'coverage', 'index.js'))));
 
 gulp.task('pack:cjs', () => rollup(rollupGenerator())
-  .then(bundler('cjs', path.join(__dirname, pkg.main))));
+  .then(bundler('cjs', path.join(__dirname, pkg.main), {
+  })));
 
 gulp.task('pack:umd', () => rollup(rollupGenerator())
   .then(bundler('umd', path.join(__dirname, pkg.browser))));

@@ -1,5 +1,9 @@
 'use strict';
 
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var WebSocket = _interopDefault(require('ws'));
+
 /**
  * Chave de API grátis da BIPBOP
  * @global
@@ -34,8 +38,6 @@ var bipbop = {
   websocketAddress: 'wss://irql.bipbop.com.br/ws',
   reconnectAfter: 3000,
 };
-
-/* globals WebSocket */
 
 var BipbopWebSocket = function BipbopWebSocket(apiKey, onMessage, onOpen) {
   this.apiKey = apiKey;

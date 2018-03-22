@@ -7,7 +7,7 @@ module.exports = function runTests(config) {
     ],
     files: [
       './tests/coverage/index.js',
-      './tests/**/*.spec.js',
+      './tests/browser.spec.js',
     ],
     exclude: [],
     // preprocessors: {

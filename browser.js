@@ -1,8 +1,10 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-	typeof define === 'function' && define.amd ? define(factory) :
-	(global.BipbopWebSocket = factory());
-}(this, (function () { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('ws')) :
+	typeof define === 'function' && define.amd ? define(['ws'], factory) :
+	(global.BipbopWebSocket = factory(global.WebSocket));
+}(this, (function (WebSocket) { 'use strict';
+
+WebSocket = WebSocket && WebSocket.hasOwnProperty('default') ? WebSocket['default'] : WebSocket;
 
 /**
  * Chave de API grátis da BIPBOP
@@ -38,8 +40,6 @@ var bipbop = {
   websocketAddress: 'wss://irql.bipbop.com.br/ws',
   reconnectAfter: 3000,
 };
-
-/* globals WebSocket */
 
 var BipbopWebSocket = function BipbopWebSocket(apiKey, onMessage, onOpen) {
   this.apiKey = apiKey;

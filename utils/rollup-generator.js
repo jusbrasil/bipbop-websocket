@@ -5,6 +5,8 @@ const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const istanbul = require('rollup-plugin-istanbul');
 
+const pkg = require('../package.json');
+
 /* eslint import/no-extraneous-dependencies: 0 */
 module.exports = function configuration(confs = {}) {
   const plugins = [
@@ -19,6 +21,7 @@ module.exports = function configuration(confs = {}) {
   }
 
   return {
+    external: Object.keys(pkg.dependencies),
     input: 'lib/index.js',
     plugins,
   };

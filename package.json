@@ -2,7 +2,9 @@
   "author": {
     "name": "lf.amorim@bipbop.com.br"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ws": "^5.1.0"
+  },
   "directories": {
     "test": "tests",
     "lib": "lib"
