@@ -36,17 +36,17 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "browser": "browser.js",
+  "browser": "index.js",
   "name": "bipbop-websocket",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bipbop/bipbop-websocket.git"
   },
   "scripts": {
-    "prepack": "gulp pack:dist",
+    "prepack": "gulp",
     "pretest": "gulp pack:test",
     "test": "karma start",
     "coverage": "karma start"
   },
-  "version": "1.0.9"
+  "version": "1.0.10"
 }
