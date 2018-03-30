@@ -102,14 +102,3 @@ BipbopWebSocket.prototype.close = function close () {
 };
 
 module.exports = BipbopWebSocket;
-{ return setTimeout(function () { return this$1.start(); }, bipbop.reconnectAfter); };
-};
-
-BipbopWebSocket.prototype.close = function close () {
-  this.ws.onclose = null;
-  this.ws.close();
-};
-
-return BipbopWebSocket;
-
-})));

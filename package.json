@@ -36,7 +36,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "browser": "index.js",
+  "browser": "browser.js",
   "name": "bipbop-websocket",
   "repository": {
     "type": "git",
@@ -48,5 +48,5 @@
     "test": "karma start",
     "coverage": "karma start"
   },
-  "version": "1.0.10"
+  "version": "1.0.11"
 }
