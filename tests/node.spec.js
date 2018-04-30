@@ -10,6 +10,8 @@ describe('BipbopWebsocket', function () {
       cb();
     }, function () {
 
+    }, {
+      websocketAddress: 'ws://irql.bipbop.com.br/ws',      
     });
   });
 
@@ -18,27 +20,31 @@ describe('BipbopWebsocket', function () {
 
     }, function () {
       cb();
+    }, {
+      websocketAddress: 'ws://irql.bipbop.com.br/ws',      
     });
   });
 
   it('onSend', function (cb) {
+    new BipbopWebSocket('6057b71263c21e4ada266c9d4d4da613', function () {
+    }, function () {
+    }).send('hello!', function () {
+      cb();
+    }, {
+      websocketAddress: 'ws://irql.bipbop.com.br/ws',      
+    });
+  });
+
+  it('onClose', function (cb) {
     new BipbopWebSocket('6057b71263c21e4ada266c9d4d4da613', function () {
 
     }, function () {
 
     }).send('hello!', function () {
       cb();
-    });
-  });
-
-  it('onClose', function (cb) {
-    var webSocket = new BipbopWebSocket('6057b71263c21e4ada266c9d4d4da613', function () {
-
-    }, function () {
-
-    }).send('hello!', function () {
-      cb();
-      webSocket.close();
+      this.close();
+    }, {
+      websocketAddress: 'ws://irql.bipbop.com.br/ws',      
     });
   });
 
