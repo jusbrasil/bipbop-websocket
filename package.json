@@ -49,5 +49,5 @@
     "test": "karma start",
     "coverage": "karma start"
   },
-  "version": "1.0.13"
+  "version": "1.0.15"
 }

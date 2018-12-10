@@ -1,4 +1,4 @@
-# bipbop-websocket@1.0.13
+# bipbop-websocket@1.0.14
  [![npm version](https://badge.fury.io/js/bipbop-websocket.svg)](https://npmjs.org/package/bipbop-websocket)  [![build status](https://travis-ci.org/bipbop/bipbop-websocket.svg)](https://travis-ci.org/bipbop/bipbop-websocket)  [![dependency status](https://david-dm.org/bipbop/bipbop-websocket.svg?theme=shields.io)](https://david-dm.org/bipbop/bipbop-websocket)  [![devDependency status](https://david-dm.org/bipbop/bipbop-websocket/dev-status.svg)](https://david-dm.org/bipbop/bipbop-websocket#info=devDependencies)  [![Gitter](https://badges.gitter.im/bipbop/bipbop-websocket.svg)](https://gitter.im/bipbop/bipbop-websocket) 
 
 Connect to bipbop websocket endpoint.

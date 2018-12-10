@@ -131,6 +131,9 @@ var bipbop = {
 };
 
 var BipbopWebSocket = function BipbopWebSocket(apiKey, onMessage, onOpen, config) {
+  if ( apiKey === void 0 ) apiKey = bipbopFreeKey;
+  if ( onMessage === void 0 ) onMessage = function () {};
+  if ( onOpen === void 0 ) onOpen = function () {};
   if ( config === void 0 ) config = {};
 
   this.apiKey = apiKey;
