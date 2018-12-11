@@ -134,13 +134,13 @@ var BipbopWebSocket = function BipbopWebSocket(apiKey, onMessage, onOpen, config
   if ( apiKey === void 0 ) apiKey = bipbopFreeKey;
   if ( onMessage === void 0 ) onMessage = function () {};
   if ( onOpen === void 0 ) onOpen = function () {};
-  if ( config === void 0 ) config = {};
+  if ( config === void 0 ) config = {
+  start: true,
+};
 
   this.apiKey = apiKey;
-
   this.onMessage = onMessage.bind(this);
   this.onOpen = onOpen.bind(this);
-
   this.queue = [];
   this.config = objectAssign(bipbop, config);
   this.ws = null;
@@ -157,6 +157,17 @@ BipbopWebSocket.open = function open (apiKey, onMessage, onConnect) {
       while ( len-- ) args[ len ] = arguments[ len ];
       return (ref = new BipbopWebSocket(apiKey, onMessage, onConnect)).send.apply(ref, args);
     };
+};
+
+BipbopWebSocket.promise = function promise (onMessage, apiKey, config) {
+    if ( onMessage === void 0 ) onMessage = function () {};
+    if ( apiKey === void 0 ) apiKey = bipbopFreeKey;
+    if ( config === void 0 ) config = {};
+
+  return new Promise(function (onopen, onerror) {
+    var useConfig = Object.assign({}, config, { ws: { onopen: onopen, onerror: onerror }, noretry: true });
+    return new BipbopWebSocket(apiKey, onMessage, function () {}, useConfig);
+  });
 };
 
 BipbopWebSocket.prototype.send = function send (data, onSend) {
@@ -184,13 +195,23 @@ BipbopWebSocket.prototype.start = function start () {
   this.ws.onopen = function () {
       var ref;
 
+    if (this$1.config.ws && this$1.config.ws.onopen) { this$1.config.ws.onopen(this$1); }
     this$1.ws.send(JSON.stringify(this$1.apiKey));
     while (this$1.queue.length) { (ref = this$1).send.apply(ref, this$1.queue.shift()); }
     if (this$1.onOpen) { this$1.onOpen(this$1.ws); }
   };
 
-  this.ws.onerror = function () { return this$1.ws.close(); };
-  this.ws.onclose = function () { return setTimeout(function () { return this$1.start(); }, bipbop.reconnectAfter); };
+  this.ws.onerror = function () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+    if (this$1.config.ws && this$1.config.ws.onerror) { this$1.config.ws.onerror(args); }
+    this$1.ws.close();
+  };
+  this.ws.onclose = function () {
+    if (this$1.config.noretry) { return; }
+    setTimeout(function () { return this$1.start(); }, bipbop.reconnectAfter);
+  };
 };
 
 BipbopWebSocket.prototype.close = function close () {
