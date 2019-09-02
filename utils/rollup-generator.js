@@ -13,7 +13,7 @@ module.exports = function configuration(confs = {}) {
     commonjs(),
     resolve(),
     buble(),
-    license({ banner: { file: path.join(__dirname, 'banner.txt') } }),
+    license(),
   ];
 
   if (confs.istanbul) {
