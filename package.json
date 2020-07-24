@@ -39,6 +39,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
+  "types": "./index.d.ts",
   "browser": "browser.js",
   "name": "bipbop-websocket",
   "repository": {
